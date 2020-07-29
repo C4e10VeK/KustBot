@@ -14,14 +14,11 @@ namespace KustBot.Music
     class MusicCommands : BaseCommandModule
     {
         private static ConnectionEndpoint Endpoint = new ConnectionEndpoint { Hostname = "192.168.1.5", Port = 2333 };
-        private Queue<LavalinkTrack> tracks = new Queue<LavalinkTrack>();
 
         [Command("play")]
         [Priority(0)]
         public async Task PlayTrackAsyncs(CommandContext ctx, params string[] text)
         {
-            string trakName = null;
-
             for (int i = 0; i < text.Length; i++)
             {
                 trakName += text[i] + " ";
@@ -53,8 +50,7 @@ namespace KustBot.Music
             
             Console.WriteLine($"{play.Tracks.First()} - кол-во элементов в очереди");
 
-            await lavalinkGuild.PlayAsync(tracks.Dequeue());
-            await ctx.RespondAsync($"Now playing {trakName}").ConfigureAwait(false);
+            await lavalinkGuild.PlayAsync(play.Tracks.First());
         }
 
         [Command("pause")]

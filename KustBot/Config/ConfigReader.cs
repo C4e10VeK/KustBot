@@ -11,8 +11,6 @@ namespace KustBot.Config
     {
         [JsonProperty("Token")]
         public string token { get; set; }
-        [JsonProperty("TokenIgor")]
-        public string tokenIgor { get; set; }
         [JsonProperty("Prefix")]
         public string[] prefix { get; set; }
         [JsonProperty("Game")]
